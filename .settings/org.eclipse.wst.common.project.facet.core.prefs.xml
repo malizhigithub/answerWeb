@@ -1,0 +1,12 @@
+<root>
+  <facet id="wst.jsdt.web"/>
+  <facet id="jst.web"/>
+  <facet id="java"/>
+  <facet id="jst.web.jstl"/>
+  <facet id="me.spring">
+    <node name="libprov">
+      <attribute name="provider-id" value="spring-no-op-library-provider"/>
+    </node>
+  </facet>
+  <facet id="maven"/>
+</root>

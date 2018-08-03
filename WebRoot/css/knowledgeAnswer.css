@@ -1,0 +1,378 @@
+*{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: underline;
+}
+body{
+	/*background: url(../resource/images/bg1.jpg) ;*/
+}
+header{
+	width: 100%;
+	height: 100px;
+	min-width: 830px;
+	background: #fefefe;
+}
+
+
+.img{
+	float: left;
+}
+.find{
+	float: right;
+	position: relative;
+	width: 300px;
+	height: 45px;
+	line-height: 50px;
+	margin: 40px 25px 0 0;
+	background: #63C5DA;	
+}
+input[type="text"]{
+	position: absolute;
+	width: 255px;
+	height: 43px;
+	font-size: 16px;
+	border: 1px solid #8bdaf3;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 0px 10px 0 rgba(99, 196, 218, .3);
+    outline: none;
+}
+.find button{	
+	position: absolute;
+	width: 44px;
+    height: 45px;
+    margin-left: 257px;
+	border: 1px solid #8bdaf3;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-image: url(../resource/images/find.jpg);
+    background-size: 140%;
+    background-position: -9px -3px;
+    outline: none;
+    cursor: pointer;
+}
+
+
+nav{
+	width: 100%;
+	height: 45px;
+	min-width: 830px;
+	background: #3992d0;; /*#337ab7;*/
+}
+
+.catalog{
+	float: left;
+}
+.catalog ul li{
+	line-height: 45px;
+	float: left;
+	color: white;
+	font-weight: bold;
+	padding-left: 39px;
+}
+
+.user{
+	float: right;
+	height: 45px;
+	line-height: 45px;
+	margin-right: 25px;
+	color: white;
+}
+
+.user a{
+	display: inline-block;
+    height: 45px;
+    line-height: 45px;
+	color: white;
+	padding-left: 15px;
+}
+
+.user a img{
+	vertical-align: middle;
+}
+
+
+nav a{
+	color: white;
+}
+
+/*答题情况*/
+.box{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.2);
+	display: none;
+}
+.box .box1{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.answerSituation{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	width: 420px;
+    height: 275px;
+    padding-top: 20px;
+	background: #fff;
+}
+.box .x{
+	text-align: right;
+	margin: -27px 2px 0 0;
+}
+.box .x p{
+	float: right;
+	width: 20px;
+	color: #CCCCCC;
+	font-size: 24px;
+	cursor: pointer;
+}
+.box .top{
+	height: 38px;
+    line-height: 33px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #ddd;
+    margin-top: 30px;
+}
+
+.box .situation{
+	line-height: 40px;
+    font-size: 20px;
+    color: #999;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+.box .situation p{
+	text-align: center;
+}
+.box .box_button{
+	padding: 0 0 0 130px;
+}
+.box .box_button a{
+	color: #fff;
+	font-weight: bold;
+	margin-left: 30px;
+	padding: 13px;
+	background: #63c5da;
+	border-radius: 5px;
+    box-shadow: 0 5px 10px 0 rgba(99, 196, 218, .3);
+    outline: none;
+    border: none;
+    transition: ease-in 0.2s;
+}
+.box a:hover{
+	background-color: #56bbd1;
+    box-shadow: 0 5px 10px 0 rgba(99, 196, 218, 0.8);
+    text-decoration: none;
+}
+
+
+
+section{
+	width: 100%;
+	min-width: 830px;
+	background: url(../resource/images/bg1.jpg) ;
+	padding: 15px 0 15px 0;	
+}
+
+.condition{
+	width: 80%;
+	min-width: 686px;
+	height: 65px;
+	margin: 0 auto;
+	color: #071217;
+	font-weight: bold;
+	background: #ccccff;
+	line-height: 65px;
+	padding-left: 50px;
+	box-sizing: border-box;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.condition ul li{
+	padding: 0 0px 0 20px;
+    width: 25%;
+	float: left;
+	text-indent: 34px;
+	background-repeat: no-repeat;
+}
+.condition ul li:nth-of-type(1){
+	background-image: url(../resource/images/arrow.png);
+	background-position: 0px 8px;
+}
+.condition ul li:nth-of-type(2){
+	background-image: url(../resource/images/icon2.png);
+	background-position: 0px 8px;
+}
+.condition ul li:nth-of-type(3){
+	background-image: url(../resource/images/icon1.png);
+	background-position: 9px 8px;
+}
+
+.content{
+	width: 80%;
+	min-width: 686px;
+	margin: 0 auto;
+	background: #fff;/*#f9f5e8;*/
+	padding: 16px 15px;
+	box-sizing: border-box;
+}
+
+h4{
+	color: #317EB4;
+}
+
+.question{
+	width: 100%;	
+	margin-bottom: 15px;
+}
+
+.question ul{
+	color: #464646;
+	font-weight: bold;
+	background-color: #F6F6F6;
+	padding: 10px 10px;
+	box-sizing: border-box;	
+}
+
+.question ul li{
+	display: block;  /*开始隐藏*/
+	min-height: 100px;
+}
+
+.question ul li:nth-of-type(2),
+.question ul li:nth-of-type(3),
+.question ul li:nth-of-type(4){
+	text-align: center;	
+}
+.question ul li:nth-of-type(2) img{
+	max-width: 600px;
+}
+.question ul li:nth-of-type(3) video{
+	max-width: 600px;
+}
+.question ul li:nth-of-type(4) audio{
+	width: 450px;
+	height: 50px;
+}
+
+.selection{
+	width: 100%;			
+}
+.selection ul{	 
+	padding: 13px 10px;
+	box-sizing: border-box;
+	background-color: #F6F6F6;
+	
+}
+.selection ul li{ /*开始隐藏*/
+	display: block;
+	
+}
+.selection ul li div{
+	padding-bottom: 10px;
+}
+.selection input{
+	float: left;
+}
+input[type="radio"],input[type="checkbox"]{
+	width: 25px;
+	height: 17px;
+	
+}
+.selection span{	
+	position: relative;
+	top: -3px;
+	left: 1px;
+	width: 92%;
+	display: inline-block;	
+}
+
+.selection textarea{
+	width: 100%;
+	height: 130px;
+	resize: none;
+	font-size: 16px;
+	border: 1px solid #D4D4D4;
+}
+
+hr{
+	margin-top: 10px;
+	height: 2px;
+	background: #d4d4d4;
+	box-shadow: 0 0px 10px 0 rgba(99, 196, 218, .3);
+}
+
+.answer{
+	display: none;/*开始隐藏*/
+	width: 100%;	
+	margin-top: 10px;
+}
+.answer div{
+	padding: 13px 10px;
+	box-sizing: border-box;
+	background-color: #F6F6F6;
+	border-radius: 5px;
+	border: 1px solid #D4D4D4;
+}
+.button{
+	margin-top: 10px;
+	float: right;
+}
+.button button{
+	background: #5eace2;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 16px;
+	padding: 10px 15px;
+	outline: none;
+	border-radius: 5px;
+	transition: ease-in 0.2s;		
+}
+.button button:hover{
+	background: #3992D0;
+
+}
+
+
+footer{	
+	clear: both;
+	padding: 20px 0 30px 0;	
+}
+footer p{ 
+	min-width: 830px;
+	text-align: center;
+	font-size: 14px;
+	padding: 20px 0 20px 0;	
+	border: 1px solid #ddd;	
+}
+footer p a{
+	color: #135c79;
+	min-width: 830px;
+}
+
+.clear{
+	clear: both;
+}

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring 
+		http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/task 
+		http://www.springframework.org/schema/task/spring-task-4.3.xsd">
+		
+
+	<!-- spring配置文件，配置业务逻辑有关的 -->
+	<!-- =================================注册组件============================= -->
+	<context:component-scan base-package="cn.edu.lingnan.pojo"></context:component-scan>
+	<context:component-scan base-package="cn.edu.lingnan.dao"></context:component-scan>
+	<context:component-scan base-package="cn.edu.lingnan.service"></context:component-scan>
+	
+	<task:annotation-driven scheduler="qbScheduler" mode="proxy"/>  
+    <task:scheduler id="qbScheduler" pool-size="10"/>
+
+	<!-- 引入外部文件 -->
+	<context:property-placeholder location="classpath:dbconfig.properties" />
+
+	<!-- 配置数据源，连接池 -->
+	<bean id="comboPooledDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+		<property name="driverClass" value="${jdbc.driverClass}"></property>
+		<property name="user" value="${jdbc.user}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+		<!--最大空闲时间，60秒内未使用则连接被丢弃。若为0则永不丢弃。默认值: 0 -->    
+        <property name="maxIdleTime" value="30"></property>    
+        <!--连接池中保留的最大连接数。默认值: 15 -->  
+        <property name="maxPoolSize" value="100"></property>   
+        <!-- 连接池中保留的最小连接数，默认为：3-->   
+        <property name="minPoolSize" value="10"></property>   
+        <property name="maxStatements" value="200"></property>
+        <property name="idleConnectionTestPeriod" value="60"></property>
+	</bean>
+
+	<!-- ============================配置和Mybatis的整合 ====================== -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+		<property name="dataSource" ref="comboPooledDataSource"></property>
+		<property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+	</bean>
+
+	<!--配置一个可以进行批量执行的sqlSession,比如说要插入大量数据，则需要创建SqlSessionTemplate这个Bean -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"></constructor-arg>
+		<!-- 当设置为batch的时候，所有的操作默认返回值为-2147482646 -->
+		<constructor-arg name="executorType" value="SIMPLE"></constructor-arg>
+	</bean>
+
+	<!-- 配置扫描器，把mybatis接口的实现加入到IOC容器中 -->
+	<mybatis-spring:scan base-package="cn.edu.lingnan.dao" />
+
+	<!-- ================================配置事务管理器 ====================== -->
+	<bean id="dataSourceTransactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<!-- 控制数据源 -->
+		<property name="dataSource" ref="comboPooledDataSource"></property>
+	</bean>
+
+	<!-- 开启基于注解的事务，使用xml配置形式的事务（主要都是使用配置式） -->
+
+	<aop:config>
+		<!-- 配置事务切入点 -->
+		<aop:pointcut expression="execution(* cn.edu.lingnan.service.*.*(..))"
+			id="txPoint" />
+		<!-- 配置增强事务 -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint" />
+	</aop:config>
+
+	<!-- 配置事务增强，事务如何切入 ，不要忘记配置事务管理器与上面的事务管理器发生联系 -->
+	<tx:advice id="txAdvice" transaction-manager="dataSourceTransactionManager">
+		<tx:attributes>
+			<!-- 所有方法都是事务方法 -->
+			<tx:method name="*" />
+			<!-- 以get开始的所有方法 -->
+			<tx:method name="get*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+
+</beans>
+
+
+

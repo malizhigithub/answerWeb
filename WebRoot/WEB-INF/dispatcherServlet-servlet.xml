@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- springmvc的配置文件,包含网站的跳转逻辑,配置 -->
+	<context:component-scan base-package="cn.edu.lingnan.controller"
+		use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<!-- 配置视图解释器 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<!-- 使用Bean Validator -->
+	<bean id="validator" 
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+		
+	<!-- JSON支持 -->
+	<bean id="messageAdapter" class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+			</list>
+		</property>		
+	</bean>
+	<bean id="exceptionMessageAdapter" 
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver">
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 支持更高级的功能，比如映射动态请求 网上解释： 1：要使用spring mvc中的@Controller注解，就必须要配置<mvc:annotation-driven 
+		/>， 否则org.springframework.web.servlet.DispatcherServlet无法找到控制器并把请求分发到控制器 
+		<mvc:annotation-driven/>相当于注册了DefaultAnnotationHandlerMapping 和AnnotationMethodHandlerAdapter两个bean， 
+		配置一些messageconverter。即解决了@Controller注解的使用前提配置 2：<mvc:annotation-driven /> 
+		会自动注册DefaultAnnotationHandlerMapping 与AnnotationMethodHandlerAdapter 两个bean,是spring 
+		MVC为@Controllers分发请求所必须的， 即解决了@Controller注解使用的前提配置。 同时它还提供了：数据绑定支持，@NumberFormatannotation支持，@DateTimeFormat支持，@Valid支持， 
+		读写XML的支持（JAXB，读写JSON的支持（Jackson）。我们处理响应ajax请求时， 就使用到了对json的支持（配置之后，在加入了jackson的core和mapper包之后，不写配置文件也能自动转换成json）。 
+		而且，当对action写JUnit单元测试时，要从spring IOC容器中取DefaultAnnotat -->
+	
+	<mvc:annotation-driven></mvc:annotation-driven>
+
+	<!-- 将springmvc不能处理的资源交给tomcat来处理 -->
+	<mvc:default-servlet-handler />
+	
+	<!-- 配置multipartResolver：上传文件bean -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"></property>
+		<property name="maxUploadSize" value="102400000"></property>
+	</bean>
+	
+	<!-- 配置拦截器，如果没有登入管理员，不能操作后台系统 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/selectUserByExample"/>
+			<mvc:mapping path="/selectQuestion"/>
+			<mvc:mapping path="/questionFirstType"/>
+			<mvc:mapping path="/questionSecondType"/>
+			<mvc:mapping path="/questionThreeType"/>
+			<bean class="cn.edu.lingnan.filter.CommonInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+</beans>

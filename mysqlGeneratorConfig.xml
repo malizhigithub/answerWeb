@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+  
+ <generatorConfiguration>
+
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+
+		<!-- 让逆向工程产生的文件不需要注释 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		
+		<!-- 配置数据库连接 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/AnswerWeb" userId="root"
+			password="root">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 指定javaBean生成位置 -->
+		<!-- targetProject=".\src\main\java"> : bean所在工程的名字 -->
+		<javaModelGenerator targetPackage="cn.edu.lingnan.pojo"
+			targetProject=".\src">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- 指定sql映射文件生成的位置 -->
+		<sqlMapGenerator targetPackage="mapper" targetProject=".\config">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- 指定dao接口生成的位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="cn.edu.lingnan.dao" targetProject=".\src">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!--  
+		<table tableName="user" domainObjectName="User"></table>
+		<table tableName="admins" domainObjectName="Admins"></table>
+		<table tableName="options" domainObjectName="Options"></table>
+		<table tableName="question" domainObjectName="Question"></table>
+		<table tableName="questiontype" domainObjectName="QuestionType"></table>
+		<table tableName="records" domainObjectName="Records"></table>
+		
+		<table tableName="records" domainObjectName="Records"></table>
+		<table tableName="wechatuser" domainObjectName="WeChatUser"></table>-->
+		<table tableName="user" domainObjectName="User"></table>
+		<table tableName="tempUrl" domainObjectName="TempUrl"></table>
+		
+		
+
+	</context>
+</generatorConfiguration>
