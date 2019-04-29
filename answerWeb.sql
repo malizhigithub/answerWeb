@@ -441,12 +441,8 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('3', 'yuan', 'yuan', '304059335@qq.com', '男', '0', '20180414092742');
-INSERT INTO `user` VALUES ('4', '马立志', '123456', '30405935@qq.com', '男', '1', '20180415134638');
-INSERT INTO `user` VALUES ('5', 'test', 'root', 'test@163.com', '男', '0', '20180415135014');
-INSERT INTO `user` VALUES ('7', '麦舒婷', '123456', '2585779482@qq.com', '女', '1', '20180415153024');
-INSERT INTO `user` VALUES ('8', 'yuan', 'yuan', '15017391266@163.com', '男', '1', '20180415160223');
-INSERT INTO `user` VALUES ('9', 'ayun', '1234', '15017391226@163.com', '男', '0', '20180415162210');
+INSERT INTO `user` VALUES ('3', 'xxx', 'xxx', 'xxxxx@qq.com', '男', '0', '20180414092742');
+
 
 -- ----------------------------
 -- Table structure for wechatuser
