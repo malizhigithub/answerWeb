@@ -9,15 +9,15 @@
   - 使用git和maven管理项目
 - 部分页面
   - 登录页
-![](https://user-gold-cdn.xitu.io/2019/4/30/16a6a4a89c2f1180?w=1366&h=636&f=png&s=213870)
+![](https://malizhi-blog-1252037601.cos.ap-guangzhou.myqcloud.com/AnswerWeb-README/%E7%99%BB%E5%BD%95%E9%A1%B5.png)
   - 首页
-![](https://user-gold-cdn.xitu.io/2019/4/30/16a6a4c444ed3cb4?w=1366&h=636&f=png&s=78719)
+![](https://malizhi-blog-1252037601.cos.ap-guangzhou.myqcloud.com/AnswerWeb-README/%E9%A6%96%E9%A1%B5.png)
   - 答题页
-![](https://user-gold-cdn.xitu.io/2019/4/30/16a6a4c93df689b0?w=1366&h=636&f=png&s=187930)
-![](https://user-gold-cdn.xitu.io/2019/4/30/16a6a4cf5761693d?w=1366&h=636&f=png&s=301972)
+![](https://malizhi-blog-1252037601.cos.ap-guangzhou.myqcloud.com/AnswerWeb-README/%E7%AD%94%E9%A2%98%E9%A1%B5%E9%9D%A2%E4%B8%80.png)
+![](https://malizhi-blog-1252037601.cos.ap-guangzhou.myqcloud.com/AnswerWeb-README/%E7%AD%94%E9%A2%98%E9%A1%B5%E9%9D%A2%E4%BA%8C.png)
   - 管理端编辑试题页面
-![](https://user-gold-cdn.xitu.io/2019/4/30/16a6a4e41bb33fc5?w=1366&h=636&f=png&s=126078)
+![](https://malizhi-blog-1252037601.cos.ap-guangzhou.myqcloud.com/AnswerWeb-README/%E7%AE%A1%E7%90%86%E7%AB%AF%E7%BC%96%E8%BE%91%E8%AF%95%E9%A2%98%E9%A1%B5%E9%9D%A2.png)
   - 微信页
   
-![](https://user-gold-cdn.xitu.io/2019/4/30/16a6a50068667bfa?w=433&h=764&f=png&s=80972)
-![](https://user-gold-cdn.xitu.io/2019/4/30/16a6a50b46b4469f?w=423&h=733&f=png&s=166015)
+![](https://malizhi-blog-1252037601.cos.ap-guangzhou.myqcloud.com/AnswerWeb-README/%E5%BE%AE%E4%BF%A1%E7%AB%AF%E7%AD%94%E9%A2%98%E9%A1%B5%E9%9D%A2%E4%B8%80.png)
+![](https://malizhi-blog-1252037601.cos.ap-guangzhou.myqcloud.com/AnswerWeb-README/%E5%BE%AE%E4%BF%A1%E7%AB%AF%E7%AD%94%E9%A2%98%E9%A1%B5%E9%9D%A2%E4%BA%8C.png)
