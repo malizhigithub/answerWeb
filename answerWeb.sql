@@ -3,7 +3,7 @@ Navicat MySQL Data Transfer
 
 Source Server         : CentOs_mysql
 Source Server Version : 50560
-Source Host           : 111.230.145.137:3306
+Source Host           : xxx.xxx.xxx.xxx:3306
 Source Database       : answerWeb
 
 Target Server Type    : MYSQL
@@ -23,7 +23,7 @@ CREATE TABLE `admins` (
   `adminid` int(11) NOT NULL AUTO_INCREMENT,
   `adminname` varchar(30) NOT NULL,
   `password` varchar(40) NOT NULL,
-  `adminflag` int(11) DEFAULT '1',
+  `adminflag` int(11) DEFAULT '1',  	-- 管理员权限, 1普通 2超级
   PRIMARY KEY (`adminid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
@@ -37,10 +37,10 @@ INSERT INTO `admins` VALUES ('1', 'root', 'root', '2');
 -- ----------------------------
 DROP TABLE IF EXISTS `options`;
 CREATE TABLE `options` (
-  `optionsno` int(11) NOT NULL AUTO_INCREMENT,
-  `questionno` int(11) NOT NULL,
-  `content` varchar(200) NOT NULL,
-  `status` int(11) DEFAULT NULL,
+  `optionsno` int(11) NOT NULL AUTO_INCREMENT,  -- 自增主键id
+  `questionno` int(11) NOT NULL,  -- 题目id
+  `content` varchar(200) NOT NULL,  -- 选项内容
+  `status` int(11) DEFAULT NULL,   -- 选项对错, 1对 0错
   PRIMARY KEY (`optionsno`),
   KEY `fk_options_questionno` (`questionno`),
   CONSTRAINT `fk_options_questionno` FOREIGN KEY (`questionno`) REFERENCES `question` (`questionno`) ON DELETE CASCADE
@@ -280,11 +280,11 @@ INSERT INTO `options` VALUES ('260', '65', '123', '1');
 DROP TABLE IF EXISTS `question`;
 CREATE TABLE `question` (
   `questionno` int(11) NOT NULL AUTO_INCREMENT,
-  `content` varchar(200) NOT NULL,
-  `description` varchar(200) DEFAULT NULL,
-  `constatus` int(11) NOT NULL,
-  `desstatus` int(11) DEFAULT NULL,
-  `typeno` int(11) NOT NULL,
+  `content` varchar(200) NOT NULL,            -- 题目内容,可能是文本或链接
+  `description` varchar(200) DEFAULT NULL,    -- 题目涉及知识描述,用于答题后, 文本或链接
+  `constatus` int(11) NOT NULL,               -- 内容类型, 1文本, 2图片, 3视频, 4音乐
+  `desstatus` int(11) DEFAULT NULL,           -- 描述类型, 1文本, 2图片
+  `typeno` int(11) NOT NULL,                  -- 题目类型id
   PRIMARY KEY (`questionno`),
   KEY `fk_question_typeno` (`typeno`),
   CONSTRAINT `fk_question_typeno` FOREIGN KEY (`typeno`) REFERENCES `questiontype` (`typeno`) ON DELETE CASCADE
@@ -355,9 +355,9 @@ INSERT INTO `question` VALUES ('65', '280-1531897393239视频试题1.mp4', '492-
 -- ----------------------------
 DROP TABLE IF EXISTS `questiontype`;
 CREATE TABLE `questiontype` (
-  `typeno` int(11) NOT NULL AUTO_INCREMENT,
-  `typename` varchar(30) NOT NULL,
-  `belongtypeno` int(11) DEFAULT NULL,
+  `typeno` int(11) NOT NULL AUTO_INCREMENT,  -- 自增主键id
+  `typename` varchar(30) NOT NULL,       -- 题目类型名称
+  `belongtypeno` int(11) DEFAULT NULL,   -- 属于哪个题目类型id
   `imageurl` varchar(200) DEFAULT 'book.jpg',
   PRIMARY KEY (`typeno`),
   KEY `fk_questiontype_belongtypeno` (`belongtypeno`),
@@ -385,11 +385,11 @@ INSERT INTO `questiontype` VALUES ('19', '123', '14', '10888-1523777451470-小�
 DROP TABLE IF EXISTS `records`;
 CREATE TABLE `records` (
   `recordsno` int(11) NOT NULL AUTO_INCREMENT,
-  `userno` int(11) DEFAULT NULL,
-  `typeno` int(11) NOT NULL,
-  `acnumber` int(11) DEFAULT '0',
-  `erunmber` int(11) DEFAULT '0',
-  `wechatuserno` int(11) DEFAULT NULL,
+  `userno` int(11) DEFAULT NULL,                  -- 用户id
+  `typeno` int(11) NOT NULL,                      -- 类型id
+  `acnumber` int(11) DEFAULT '0',                 -- 答对题数
+  `erunmber` int(11) DEFAULT '0',                 -- 答错题数
+  `wechatuserno` int(11) DEFAULT NULL,            -- 微信用户id
   PRIMARY KEY (`recordsno`),
   KEY `fk_records_userno` (`userno`),
   KEY `fk_records_typeno` (`typeno`),
@@ -412,7 +412,7 @@ INSERT INTO `records` VALUES ('9', '4', '10', '0', '3', null);
 -- ----------------------------
 DROP TABLE IF EXISTS `tempurl`;
 CREATE TABLE `tempurl` (
-  `tempUrlID` int(11) NOT NULL AUTO_INCREMENT,
+  `tempUrlID` int(11) NOT NULL AUTO_INCREMENT,   --临时图片id
   `fileUrl` varchar(200) DEFAULT NULL,
   `newdate` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`tempUrlID`)
@@ -427,13 +427,13 @@ CREATE TABLE `tempurl` (
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `userno` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(20) DEFAULT NULL,
-  `password` varchar(40) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `sex` varchar(4) DEFAULT NULL,
-  `status` int(11) DEFAULT '0',
-  `newdate` varchar(15) NOT NULL,
+  `userno` int(11) NOT NULL AUTO_INCREMENT,        -- 自增主键id
+  `username` varchar(20) DEFAULT NULL,             -- 用户名
+  `password` varchar(40) NOT NULL,                 -- 用户密码
+  `email` varchar(50) NOT NULL,                    -- 用户邮箱
+  `sex` varchar(4) DEFAULT NULL,                   -- 用户性别
+  `status` int(11) DEFAULT '0',                    -- 用户是否通过邮箱验证 , 0未通过, 1通过
+  `newdate` varchar(15) NOT NULL,                  -- 注册时间
   PRIMARY KEY (`userno`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;

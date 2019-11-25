@@ -7,6 +7,14 @@
 - 技术框架
   - 使用SSM+Vue的形式来实现，SSM框架用于处理后台的数据逻辑，Vue框架用于前端的数据显示
   - 使用git和maven管理项目
+- 注意事项
+  - 数据库文件在一级目录下，命名为answerWeb.sql，部署时，需要在answerWeb/config/dbconfig.properties配置文件中配置好数据库
+  - 管理端用户表为‘admins’表
+  - 客户端用户表为‘user’表，用户端登录页登录帐号为邮箱
+  - 管理端，在创建题目时，在选择完图片后，图片会立即上传到百度云BOS对象存储中（需要在util包的BOSUtil工具类你的BOS对象存储），未点击添加题目时，此时试题的资源（图片，视频）是在BOS的临时文件夹下（在QuestionController类定义路径），当点击添加题目后，会把此试题的资源添加到目标文件夹下（在QuestionController类定义路径），临时文件夹下的东西可以设置任务调度器进行定时删除，防止浪费BOS存储空间。
+  - 微信端是利用公众号的形式进行开发，如果需要使用到微信端，需要提前申请公众号
+  - 项目的jar包除了用maven管理外，有一部分jar需要手动导入（answerWeb/WebRoot/WEB-INF/lib）
+  
 - 部分页面
   - 登录页
 ![](https://malizhi-blog-1252037601.cos.ap-guangzhou.myqcloud.com/AnswerWeb-README/%E7%99%BB%E5%BD%95%E9%A1%B5.png)
